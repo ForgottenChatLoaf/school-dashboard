@@ -85,6 +85,27 @@ const Register = () => {
               </div>
             </div>
 
+            {formData.role === 'student' && (
+              <div className="grid grid-cols-2 gap-3" style={{ animation: 'scaleIn 0.3s ease' }}>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-text-muted uppercase tracking-widest ml-1">Year Level</label>
+                  <select required value={formData.yearLevel || ''} onChange={e => setFormData({ ...formData, yearLevel: e.target.value })}
+                    className="w-full px-4 py-3 bg-surface-alt border border-white/8 rounded-xl text-text-primary text-sm transition-all appearance-none cursor-pointer">
+                    <option value="" disabled>Select Year</option>
+                    {['1st Year', '2nd Year', '3rd Year', '4th Year'].map(y => <option key={y} value={y}>{y}</option>)}
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-text-muted uppercase tracking-widest ml-1">Section</label>
+                  <select required value={formData.section || ''} onChange={e => setFormData({ ...formData, section: e.target.value })}
+                    className="w-full px-4 py-3 bg-surface-alt border border-white/8 rounded-xl text-text-primary text-sm transition-all appearance-none cursor-pointer">
+                    <option value="" disabled>Select Section</option>
+                    {['A', 'B', 'C', 'D'].map(s => <option key={s} value={s}>Section {s}</option>)}
+                  </select>
+                </div>
+              </div>
+            )}
+
             <button type="submit" disabled={loading}
               className="w-full py-3 px-4 bg-accent hover:bg-accent/90 text-white font-semibold rounded-xl transition-all btn-glow disabled:opacity-50 flex items-center justify-center gap-2 text-sm mt-2">
               {loading ? (

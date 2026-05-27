@@ -2,8 +2,9 @@ const { db } = require('../config/firebase');
 
 exports.getAllStudents = async (req, res) => {
   try {
-    const studentsRef = db.collection('students');
-    const snapshot = await studentsRef.get();
+    // Fetch actual registered users with the 'student' role
+    const usersRef = db.collection('users');
+    const snapshot = await usersRef.where('role', '==', 'student').get();
     
     if (snapshot.empty) {
       return res.json([]);
@@ -11,7 +12,18 @@ exports.getAllStudents = async (req, res) => {
 
     const students = [];
     snapshot.forEach(doc => {
-      students.push({ id: doc.id, ...doc.data() });
+      const data = doc.data();
+      // Map user data to the format StudentRecords.jsx expects
+      students.push({ 
+        id: doc.id,
+        fullname: data.fullname,
+        email: data.email,
+        studentNumber: `2024-${doc.id.substring(0, 5).toUpperCase()}`, // generate fake ID from hash
+        course: 'BSCS', // mock course since it's not in user schema
+        yearLevel: data.yearLevel?.charAt(0) || '1', // "1st Year" -> "1"
+        section: data.section || 'A',
+        createdAt: data.createdAt
+      });
     });
 
     res.json(students);

@@ -59,7 +59,7 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const { fullname, email, password, role } = req.body;
+    const { fullname, email, password, role, yearLevel, section } = req.body;
 
     // Check if email exists
     const usersRef = db.collection('users');
@@ -79,7 +79,8 @@ exports.register = async (req, res) => {
       email,
       passwordHash,
       role: role || 'student',
-      createdAt: new Date()
+      createdAt: new Date(),
+      ...(role === 'student' && { yearLevel, section })
     };
 
     const docRef = await usersRef.add(newUser);
