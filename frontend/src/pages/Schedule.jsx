@@ -1,7 +1,7 @@
-import PageWrapper from '../../components/layout/PageWrapper';
-import { Card } from '../../components/ui/Card';
+import PageWrapper from '../components/layout/PageWrapper';
+import { Card } from '../components/ui/Card';
 import { Calendar, Clock, MapPin } from 'lucide-react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 const Schedule = () => {
   const { user } = useAuth();
