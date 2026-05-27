@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import PageWrapper from '../../components/layout/PageWrapper';
-import { Card } from '../../components/ui/Card';
-import { useAuth } from '../../hooks/useAuth';
+import PageWrapper from '../components/layout/PageWrapper';
+import { Card } from '../components/ui/Card';
+import { useAuth } from '../hooks/useAuth';
 import { User, Bell, Shield, Moon, Key } from 'lucide-react';
 import toast from 'react-hot-toast';
-import api from '../../services/api';
+import api from '../services/api';
 
 const Settings = () => {
   const { user } = useAuth();
