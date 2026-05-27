@@ -119,3 +119,24 @@ exports.logout = (req, res) => {
   res.clearCookie('token');
   res.json({ message: 'Logged out successfully' });
 };
+
+exports.updatePassword = async (req, res) => {
+  try {
+    const { newPassword } = req.body;
+    if (!newPassword || newPassword.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters' });
+    }
+
+    const salt = await bcrypt.genSalt(12);
+    const passwordHash = await bcrypt.hash(newPassword, salt);
+
+    await db.collection('users').doc(req.user.id).update({
+      passwordHash: passwordHash
+    });
+
+    res.json({ message: 'Password updated successfully' });
+  } catch (error) {
+    console.error('Update password error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
