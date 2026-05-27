@@ -9,6 +9,7 @@ import AttendanceLog from './pages/admin/AttendanceLog';
 import Gradebook from './pages/admin/Gradebook';
 import MyAttendance from './pages/student/MyAttendance';
 import MyGrades from './pages/student/MyGrades';
+import Settings from './pages/Settings';
 import { StatCard } from './components/ui/StatCard';
 import { Users, BookOpen, CheckCircle, TrendingUp, Clock, Award } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
@@ -98,6 +99,10 @@ function App() {
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/student/attendance" element={<MyAttendance />} />
             <Route path="/student/grades" element={<MyGrades />} />
+          </Route>
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/settings" element={<Settings />} />
           </Route>
 
           <Route path="/" element={<Navigate to="/login" replace />} />
