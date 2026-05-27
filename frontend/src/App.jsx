@@ -11,6 +11,7 @@ import MyAttendance from './pages/student/MyAttendance';
 import MyGrades from './pages/student/MyGrades';
 import Playground from './pages/student/Playground';
 import Settings from './pages/Settings';
+import Schedule from './pages/Schedule';
 import { StatCard } from './components/ui/StatCard';
 import { Users, BookOpen, CheckCircle, TrendingUp, Clock, Award, Sparkles, GraduationCap, Zap } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
@@ -104,6 +105,7 @@ function App() {
             <Route path="/teacher" element={<TeacherDashboard />} />
             <Route path="/teacher/attendance" element={<AttendanceLog />} />
             <Route path="/teacher/grades" element={<Gradebook />} />
+            <Route path="/teacher/schedule" element={<Schedule />} />
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={['student']} />}>
@@ -111,6 +113,7 @@ function App() {
             <Route path="/student/attendance" element={<MyAttendance />} />
             <Route path="/student/grades" element={<MyGrades />} />
             <Route path="/student/playground" element={<Playground />} />
+            <Route path="/student/schedule" element={<Schedule />} />
           </Route>
 
           <Route element={<ProtectedRoute />}>
