@@ -130,13 +130,21 @@ exports.updatePassword = async (req, res) => {
     const salt = await bcrypt.genSalt(12);
     const passwordHash = await bcrypt.hash(newPassword, salt);
 
-    await db.collection('users').doc(req.user.id).update({
-      passwordHash: passwordHash
-    });
-
+    await db.collection('users').doc(req.user.id).update({ passwordHash });
     res.json({ message: 'Password updated successfully' });
   } catch (error) {
     console.error('Update password error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+exports.updatePreferences = async (req, res) => {
+  try {
+    const { notificationsEnabled } = req.body;
+    await db.collection('users').doc(req.user.id).update({ notificationsEnabled });
+    res.json({ message: 'Preferences updated' });
+  } catch (error) {
+    console.error('Update preferences error:', error);
     res.status(500).json({ message: 'Server error' });
   }
 };

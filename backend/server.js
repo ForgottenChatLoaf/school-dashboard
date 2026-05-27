@@ -21,6 +21,7 @@ app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/students', require('./src/routes/studentRoutes'));
 app.use('/api/attendance', require('./src/routes/attendanceRoutes'));
 app.use('/api/grades', require('./src/routes/gradeRoutes'));
+app.use('/api/game', require('./src/routes/gameRoutes'));
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

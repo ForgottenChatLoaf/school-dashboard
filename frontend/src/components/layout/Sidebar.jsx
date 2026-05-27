@@ -1,5 +1,5 @@
 import { useAuth } from '../../hooks/useAuth';
-import { Home, Users, CheckSquare, FileText, Calendar, Settings, LogOut, ChevronRight } from 'lucide-react';
+import { Home, Users, CheckSquare, FileText, Calendar, Settings, LogOut, ChevronRight, Gamepad2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -24,7 +24,7 @@ const Sidebar = () => {
       baseItems.push(
         { name: 'My Grades', icon: FileText, path: '/student/grades' },
         { name: 'My Attendance', icon: CheckSquare, path: '/student/attendance' },
-        { name: 'Schedule', icon: Calendar, path: '/student/schedule' },
+        { name: 'Playground', icon: Gamepad2, path: '/student/playground' },
       );
     }
 
